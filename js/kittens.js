@@ -27,46 +27,42 @@ var images = {};
 
 
 
-
-
-class Enemy {
-    constructor(xPos) {
-        this.x = xPos;
-        this.y = -ENEMY_HEIGHT;
-        this.sprite = images['enemy.png'];
-
-        // Each enemy should have a different speed
-        this.speed = Math.random() / 2 + 0.25;
-    }
-
-    update(timeDiff) {
-        this.y = this.y + timeDiff * this.speed;
-    }
-
+class Entity {
     render(ctx) {
         ctx.drawImage(this.sprite, this.x, this.y);
     }
 }
 
-class Player {
+class Enemy extends Entity {
+    constructor(xPos) {
+        super.x = xPos;
+        super.y = -ENEMY_HEIGHT;
+        super.sprite = images['enemy.png'];
+
+        // Each enemy should have a different speed
+        super.speed = Math.random() / 2 + 0.25;
+    }
+
+    update(timeDiff) {
+        super.y = super.y + timeDiff * super.speed;
+    }
+}
+
+class Player extends Entity {
     constructor() {
-        this.x = 2 * PLAYER_WIDTH;
-        this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
-        this.sprite = images['player.png'];
+        super.x = 2 * PLAYER_WIDTH;
+        super.y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
+        super.sprite = images['player.png'];
     }
 
     // This method is called by the game engine when left/right arrows are pressed
     move(direction) {
-        if (direction === MOVE_LEFT && this.x > 0) {
-            this.x = this.x - PLAYER_WIDTH;
+        if (direction === MOVE_LEFT && super.x > 0) {
+            super.x = super.x - PLAYER_WIDTH;
         }
-        else if (direction === MOVE_RIGHT && this.x < GAME_WIDTH - PLAYER_WIDTH) {
-            this.x = this.x + PLAYER_WIDTH;
+        else if (direction === MOVE_RIGHT && super.x < GAME_WIDTH - PLAYER_WIDTH) {
+            super.x = super.x + PLAYER_WIDTH;
         }
-    }
-
-    render(ctx) {
-        ctx.drawImage(this.sprite, this.x, this.y);
     }
 }
 
