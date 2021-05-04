@@ -196,7 +196,12 @@ class Engine {
     }
 
     isPlayerDead() {
-        // TODO: fix this function!
+        for (var i = 0; i < GAME_WIDTH / ENEMY_WIDTH; i++) {
+            if (this.enemies[i] && this.enemies[i].x == this.player.x) {
+                if (this.enemies[i].y + ENEMY_HEIGHT >= GAME_HEIGHT - PLAYER_HEIGHT - 10)
+                return true;
+            }
+        }
         return false;
     }
 }
