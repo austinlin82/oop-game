@@ -147,6 +147,7 @@ class Engine {
                 for(var i=0; i<5; i++)
                 {
                   delete this.enemies[i];
+                  this.score = 0;
 
 
                 }
