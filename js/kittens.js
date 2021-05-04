@@ -12,6 +12,7 @@ var PLAYER_HEIGHT = 54;
 // These two constants keep us from using "magic numbers" in our code
 var LEFT_ARROW_CODE = 37;
 var RIGHT_ARROW_CODE = 39;
+var SPACE_ARROW_CODE = 32;
 
 // These two constants allow us to DRY
 var MOVE_LEFT = 'left';
@@ -140,6 +141,15 @@ class Engine {
             else if (e.keyCode === RIGHT_ARROW_CODE) {
                 this.player.move(MOVE_RIGHT);
             }
+            else if (e.keyCode === SPACE_ARROW_CODE) {
+                for(var i=0; i<5; i++)
+                {
+                  delete this.enemies[i];
+                }
+
+
+
+            }
         });
 
         this.gameLoop();
@@ -179,12 +189,22 @@ class Engine {
         });
         this.setupEnemies();
 
+        console.log(this.isPlayerDead);
+
         // Check if player is dead
         if (this.isPlayerDead()) {
             // If they are dead, then it's game over!
             this.ctx.font = 'bold 30px Impact';
             this.ctx.fillStyle = '#ffffff';
             this.ctx.fillText(this.score + ' GAME OVER', 5, 30);
+
+            document.body.onkeyup = function(e){
+              if(e.keyCode == 32){
+                gameEngine.start();
+              }
+            }
+
+
         }
         else {
             // If player is not dead, then draw the score
