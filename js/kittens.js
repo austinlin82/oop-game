@@ -125,8 +125,6 @@ class Engine {
             enemySpot = Math.floor(Math.random() * enemySpots);
         }
         this.enemies[enemySpot] = new Enemy(enemySpot * ENEMY_WIDTH);
-        console.log(enemySpots);
-        console.log(enemySpot);
     }
 
     // This method kicks off the game
