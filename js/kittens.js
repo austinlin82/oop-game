@@ -25,12 +25,19 @@ var images = {};
     images[imgName] = img;
 });
 
+class entity{
+  render(ctx) {
+      ctx.drawImage(this.sprite, this.x, this.y);
+  }
+
+
+}
 
 
 
-
-class Enemy {
+class Enemy extends entity {
     constructor(xPos) {
+        super();
         this.x = xPos;
         this.y = -ENEMY_HEIGHT;
         this.sprite = images['enemy.png'];
@@ -43,13 +50,11 @@ class Enemy {
         this.y = this.y + timeDiff * this.speed;
     }
 
-    render(ctx) {
-        ctx.drawImage(this.sprite, this.x, this.y);
-    }
 }
 
-class Player {
+class Player extends entity{
     constructor() {
+        super();
         this.x = 2 * PLAYER_WIDTH;
         this.y = GAME_HEIGHT - PLAYER_HEIGHT - 10;
         this.sprite = images['player.png'];
@@ -65,9 +70,6 @@ class Player {
         }
     }
 
-    render(ctx) {
-        ctx.drawImage(this.sprite, this.x, this.y);
-    }
 }
 
 
