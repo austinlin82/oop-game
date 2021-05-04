@@ -142,12 +142,15 @@ class Engine {
                 this.player.move(MOVE_RIGHT);
             }
             else if (e.keyCode === SPACE_ARROW_CODE) {
+
+              if (this.isPlayerDead()){
                 for(var i=0; i<5; i++)
                 {
                   delete this.enemies[i];
+
+
                 }
-
-
+              }
 
             }
         });
@@ -200,8 +203,10 @@ class Engine {
 
             document.body.onkeyup = function(e){
               if(e.keyCode == 32){
-                gameEngine.start();
+                gameEngine.gameLoop();
+
               }
+
             }
 
 
